@@ -1,0 +1,540 @@
+version: "2.0"
+stories:
+- story: 01 details in each step from greeting without sending mail
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: kochi
+  - slot_was_set:
+    - location: kochi
+  - action: action_verify_city
+  - slot_was_set:
+    - location: kochi
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: north indian
+  - slot_was_set:
+    - cuisine: north indian
+  - action: utter_ask_price_categories
+  - intent: restaurant_search
+    entities:
+    - price: high
+  - slot_was_set:
+    - price: high
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: kochi
+  - slot_was_set:
+    - cuisine: north indian
+  - slot_was_set:
+    - price: high
+  - action: utter_check_for_email
+  - intent: decline
+  - action: utter_goodbye
+
+- story: 02 providing all the details in the first line itself and no mail send
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: kochi
+    - cuisine: american
+    - price: mid
+  - slot_was_set:
+    - location: kochi
+  - slot_was_set:
+    - cuisine: american
+  - slot_was_set:
+    - price: mid
+  - action: action_verify_city
+  - slot_was_set:
+    - location: kochi
+  - slot_was_set:
+    - valid_location: true
+  - action: action_search_restaurants
+  - action: utter_check_for_email
+  - intent: decline
+  - action: utter_goodbye
+
+- story: 03 providing an non serviing city and then providing a valid city without sending mail
+  steps:
+  - intent: restaurant_search
+    entities:
+    - location: rishikesh
+  - slot_was_set:
+    - location: rishikesh
+  - action: action_verify_city
+  - slot_was_set:
+    - location: null
+  - slot_was_set:
+    - valid_location: false
+  - action: utter_ask_location_again
+  - intent: restaurant_search
+    entities:
+    - location: prayagraj
+  - slot_was_set:
+    - location: prayagraj
+  - action: action_verify_city
+  - slot_was_set:
+    - location: prayagraj
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_price_categories
+  - intent: restaurant_search
+    entities:
+    - price: high
+  - slot_was_set:
+    - price: high
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: prayagraj
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - price: high
+  - action: utter_check_for_email
+  - intent: decline
+  - action: utter_goodbye
+
+- story: 04 providing all the details in one line and then sending the mail to the mailid provided in confirmations
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: kochi
+    - cuisine: american
+    - price: mid
+  - slot_was_set:
+    - location: kochi
+  - slot_was_set:
+    - cuisine: american
+  - slot_was_set:
+    - price: mid
+  - action: action_verify_city
+  - slot_was_set:
+    - location: kochi
+  - slot_was_set:
+    - valid_location: true
+  - action: action_search_restaurants
+  - action: utter_check_for_email
+  - intent: restaurant_search
+    entities:
+    - emailid: regiltcj@ymail.com
+    - sendmail: yeah send it
+  - slot_was_set:
+    - sendmail: yeah send it
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 04 providing all the details in one line and then sending the mail to the mailid provided in confirmations
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: bhopal
+    - cuisine: american
+    - price: mid
+  - slot_was_set:
+    - location: bhopal
+  - slot_was_set:
+    - cuisine: american
+  - slot_was_set:
+    - price: mid
+  - action: action_verify_city
+  - slot_was_set:
+    - location: bhopal
+  - slot_was_set:
+    - valid_location: true
+  - action: action_search_restaurants
+  - action: utter_check_for_email
+  - intent: affirm
+    entities:
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 05 asking to mail the details in the first line and providnig the details and then the mail id
+  steps:
+  - intent: restaurant_search
+    entities:
+    - sendmail: email me
+    - price: high
+    - location: bokaro
+  - slot_was_set:
+    - location: bokaro
+  - slot_was_set:
+    - price: high
+  - slot_was_set:
+    - sendmail: email me
+  - action: action_verify_city
+  - slot_was_set:
+    - location: bokaro
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: american
+  - slot_was_set:
+    - cuisine: american
+  - action: action_search_restaurants
+  - action: utter_provide_email
+  - intent: restaurant_search
+    entities:
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 06 asking for budget restaurants near a location
+  steps:
+  - intent: restaurant_search
+    entities:
+    - price: medium
+    - location: Delhi
+  - slot_was_set:
+    - location: Delhi
+  - slot_was_set:
+    - price: medium
+  - action: action_verify_city
+  - slot_was_set:
+    - location: Delhi
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: south indian
+  - slot_was_set:
+    - cuisine: south indian
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Delhi
+  - slot_was_set:
+    - cuisine: south indian
+  - slot_was_set:
+    - price: medium
+  - action: utter_check_for_email
+  - intent: restaurant_search
+    entities:
+    - sendmail: yes
+    - sendmail: send it
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - sendmail: send it
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 07 interactive_story_1
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: italian
+  - slot_was_set:
+    - cuisine: italian
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: ahmedabad
+  - slot_was_set:
+    - location: ahmedabad
+  - action: action_verify_city
+  - slot_was_set:
+    - location: ahmedabad
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_price_categories
+  - intent: restaurant_search
+    entities:
+    - price: low
+  - slot_was_set:
+    - price: low
+  - action: action_search_restaurants
+  - action: utter_check_for_email
+  - intent: decline
+  - action: utter_goodbye
+
+- story: 08 interactive_story_2
+  steps:
+  - intent: restaurant_search
+    entities:
+    - price: low
+    - cuisine: american
+    - location: Thiruvananthapuram
+  - slot_was_set:
+    - cuisine: american
+  - slot_was_set:
+    - location: Thiruvananthapuram
+  - slot_was_set:
+    - price: low
+  - action: action_verify_city
+  - slot_was_set:
+    - location: Thiruvananthapuram
+  - slot_was_set:
+    - valid_location: true
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Thiruvananthapuram
+  - slot_was_set:
+    - cuisine: american
+  - slot_was_set:
+    - price: low
+  - action: utter_check_for_email
+  - intent: affirm
+  - action: utter_provide_email
+  - intent: restaurant_search
+    entities:
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 09 interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - cuisine: south indian
+  - slot_was_set:
+    - cuisine: south indian
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Thiruvananthapuram
+  - slot_was_set:
+    - cuisine: south indian
+  - slot_was_set:
+    - price: low
+  - action: utter_check_for_email
+  - intent: decline
+  - action: utter_goodbye
+
+- story: 10 interactive_story_4
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: hyderabad
+  - slot_was_set:
+    - location: hyderabad
+  - action: action_verify_city
+  - slot_was_set:
+    - location: hyderabad
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: south indian
+  - slot_was_set:
+    - cuisine: south indian
+  - action: utter_ask_price_categories
+  - intent: restaurant_search
+    entities:
+    - price: high
+  - slot_was_set:
+    - price: high
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: hyderabad
+  - slot_was_set:
+    - cuisine: South Indian
+  - slot_was_set:
+    - price: high
+  - action: utter_check_for_email
+  - intent: restaurant_search
+    entities:
+    - sendmail: yes
+    - emailid: naniusspnani@gmail.com
+  - slot_was_set:
+    - emailid: naniusspnani@gmail.com
+  - slot_was_set:
+    - sendmail: yes
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 11 email affirmation and then provide the mail
+  steps: 
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: Bangalore
+  - slot_was_set:
+    - location: Bangalore
+  - action: action_verify_city
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: south indian
+  - slot_was_set:
+    - cuisine: south indian
+  - action: utter_ask_price_categories
+  - intent: restaurant_search
+    entities:
+    - price: high
+  - slot_was_set:
+    - price: high
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - cuisine: south indian
+  - slot_was_set:
+    - price: high
+  - action: utter_check_for_email
+  - intent: affirm
+  - action: utter_provide_email
+  - intent: restaurant_search
+    entities:
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 12 budget cuisine and location provided initially
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - price: high
+    - cuisine: South Indian
+    - location: Vijayawada
+  - slot_was_set:
+    - cuisine: South Indian
+  - slot_was_set:
+    - location: Vijayawada
+  - slot_was_set:
+    - price: high
+  - action: action_verify_city
+  - slot_was_set:
+    - location: Vijayawada
+  - slot_was_set:
+    - valid_location: true
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Vijayawada
+  - slot_was_set:
+    - cuisine: South Indian
+  - slot_was_set:
+    - price: high
+  - action: utter_check_for_email
+  - intent: affirm
+    entities:
+    - sendmail: yes
+  - slot_was_set:
+    - sendmail: yes
+  - action: utter_provide_email
+  - intent: restaurant_search
+    entities:
+    - emailid: naniusspnani@gmail.com
+  - slot_was_set:
+    - emailid: naniusspnani@gmail.com
+  - action: action_send_email
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: 13 asking to mail the details in the first line itself with location and cuisine provided
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - sendmail: ' yes'
+    - cuisine: italian
+    - location: hyderabad
+  - slot_was_set:
+    - cuisine: italian
+  - slot_was_set:
+    - location: hyderabad
+  - slot_was_set:
+    - sendmail: ' yes'
+  - action: action_verify_city
+  - slot_was_set:
+    - location: hyderabad
+  - slot_was_set:
+    - valid_location: true
+  - action: utter_ask_price_categories
+  - intent: restaurant_search
+    entities:
+    - price: high
+  - slot_was_set:
+    - price: high
+  - action: utter_provide_email
+  - intent: restaurant_search
+    entities:
+    - emailid: naniusspnani@gmail.com
+  - slot_was_set:
+    - emailid: naniusspnani@gmail.com
+  - action: action_send_email
+  - action: utter_goodbye
+
+- story: 13 story in which cuisine and price is given
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: italian
+    - price: low
+  - slot_was_set:
+    - cuisine: italian
+  - slot_was_set:
+    - price: low
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: surat
+  - slot_was_set:
+    - location: surat
+  - action: action_verify_city
+  - slot_was_set:
+    - location: surat
+  - slot_was_set:
+    - valid_location: true
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: surat
+  - slot_was_set:
+    - cuisine: italian
+  - slot_was_set:
+    - price: low
+  - action: utter_check_for_email
+  - intent: restaurant_search
+    entities:
+    - sendmail: send it
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - emailid: regiltcj@ymail.com
+  - slot_was_set:
+    - sendmail: send it
+  - action: action_send_email
+  - action: utter_goodbye
+

@@ -1,0 +1,606 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hola
+    - Hey
+    - howdy
+    - hey there
+    - hello
+    - hi
+    - good morning
+    - good evening
+    - dear sir
+    - hello
+    - HI
+- intent: restaurant_search
+  examples: |
+    - show me some [american](cuisine) restaurants ni [bombay]{"entity": "location", "value": "Mumbai"}
+    - [kochi]{"entity": "location", "value": "Kochi"}
+    - [italian](cuisine) restaurant in [mumbai](location)
+    - show me some [cheap]{"entity": "price", "value": "low"} [italian](cuisine) restaurants
+    - [patna](location)
+    - show me some [<300]{"entity": "price", "value": "low"} [mexican](cuisine) restaurants in [pune](location)
+    - show me some [luxury]{"entity": "price", "value": "high"} [north indian](cuisine) restaurants in [pune](location)
+    - i'm looking for a place to eat
+    - I want to grab lunch
+    - I am searching for a dinner spot
+    - Looking for some restaurants in [pondy]{"entity": "location", "value": "Pondicherry"}
+    - [cochin]{"entity": "location", "value": "Kochi"}
+    - [north indian](cuisine)
+    - I am looking for some restaurants in [delhi](location).
+    - I am looking for some restaurants in [bnglr](location)
+    - I am looking for some restaurants in [Madras](location)
+    - show me [chinese](cuisine) restaurants
+    - show me [chines](cuisine:chinese) restaurants in the [Dilli]{"entity": "location", "value": "Delhi"}
+    - show me a [mexican](cuisine:mexican) place in the [avanti]{"entity": "location", "value": "Ujjain"}
+    - i am looking for an [south indian]{"entity": "cuisine", "value": "south indian"} spot called olaolaolaolaolaola
+    - search for restaurants
+    - anywhere in the [north india](location)
+    - I am looking for [AMERICAN](cuisine:american) food
+    - [Northern]{"entity": "cuisine", "value": "north indian"}
+    - I am looking a restaurant in [294328](location)
+    - in [Gurgaon](location)
+    - [american](cuisine:american)
+    - [North Indian]{"entity": "cuisine", "value": "north indian"}
+    - [budget]{"entity": "price", "value": "medium"} restaurants in [culcuta]{"entity": "location", "value": "Kolkata"}
+    - [Chinese](cuisine:chinese)
+    - [trivandrum](location)
+    - Oh, sorry, in [asansol]{"entity": "location", "value": "Asansol"}
+    - Try [tirunelveli](location)
+    - in [delhi](location)
+    - I am looking for some restaurants in [Mumbai](location)
+    - I am looking for [mexican indian fusion](cuisine)
+    - can you book a table in [kolkata]{"entity": "location", "value": "Kolkata"} in a [moderate](price) price range with [italian](cuisine) food for [four](people:4) people
+    - can you book a table in [chandigarh]{"entity": "location", "value": "Chandigarh"} in a [budget](price) price range with [mexican](cuisine) food for [four](people:4) people
+    - [warnagal](location) [southern]{"entity": "cuisine", "value": "south indian"} restaurant
+    - please help me to find restaurants in [pune](location)
+    - Please find me a restaurantin [bangalore](location)
+    - [mumbai](location)
+    - [Chinese](cuisine:chinese)
+    - show me restaurants
+    - [mumbai](location)
+    - [Italian](cuisine:italian)
+    - please find me [chinese](cuisine:chinese) restaurant in [delhi](location)
+    - can you find me a [chinese](cuisine) restaurant
+    - [delhi](location)
+    - please find me a restaurant in [ahmedabad](location)
+    - please show me a few [italian](cuisine:italian) restaurants in [bangalore](location)
+    - rstrnts in [bangalor](location)
+    - Restaurants near [bengaluru](location)
+    - restaurant for the place [Trivandrum](location)
+    - hotels in [Chennai](location) which serve [North Indian]{"entity": "cuisine", "value": "north indian"} food
+    - [expensive]{"entity": "price", "value": "high"} hotels in [mysore](location) for [south indian]{"entity": "cuisine", "value": "south indian"} cuisine
+    - [luxury]{"entity": "price", "value": "high"} restaurants 
+    - restaurants in the range [300-700]{"entity": "price", "value": "medium"}
+    - Restaurants [below 500](price:medium)
+    - [budget]{"entity": "price", "value": "medium"} restaurants in [agra](location)
+    - [300-700]{"entity": "price", "value": "medium"}
+    - [below 300](price:low)
+    - [medium]{"entity": "price", "value": "medium"}
+    - [low]{"entity": "price", "value": "low"}
+    - [high]{"entity": "price", "value": "high"}
+    - restaurants affordable of price [<700](price:medium)
+    - [>700](price:high)
+    - [budget]{"entity": "price", "value": "medium"} hotels near [cutak](location)
+    - sorry! i misspelt, it is [cuttack](location)
+    - restaurants in the [range 150-300](price:low)
+    - [cheap](price:low) restaurants near [malappuram](location)
+    - restaurant that offer food at [low price](price:low) near [mysuru](location)
+    - I'll prefer [Italian](cuisine:italian)
+    - okay can you try [prayagraj](location) then
+    - [northindian]{"entity": "cuisine", "value": "north indian"}
+    - [southindian]{"entity": "cuisine", "value": "south indian"}
+    - [send me the list](sendmail) of [north india]{"entity": "cuisine", "value": "north indian"} restaurants in [biwandi]{"entity": "location", "value": "Bhiwandi"} to [xyz@djf.co.in](emailid)
+    - [share the](sendmail) restaurants to [xyz@dfk.com](emailid)
+    - [share the](sendmail) restaurants in [bhojpal]{"entity": "location", "value": "Bhopal"}
+    - [email me](sendmail) the list of [expensive]{"entity": "price", "value": "high"} restaurants near [bokaro](location)
+    - I want [american](cuisine) cusine
+    - [budget]{"entity": "price", "value": "medium"} restaurants in [dilli]{"entity": "location", "value": "Delhi"}
+    - i want [southern]{"entity": "cuisine", "value": "south indian"} food
+    - [yeah]{"entity": "sendmail", "value": "yes"} [send it](sendmail) to [regiltcj@ymail.com](emailid)
+    - [Italian]{"entity": "cuisine", "value": "italian"} restaurants
+    - around [ahmedabad](location)
+    - [<300]{"entity": "price", "value": "low"}
+    - [cheap]{"entity": "price", "value": "low"} [american](cuisine) hotels in  [trivandrum]{"entity": "location", "value": "Thiruvananthapuram"}
+    - [regiltcj@ymail.com](emailid)
+    - i need [South Indian]{"entity": "cuisine", "value": "south indian"} food
+    - [send](sendmail)
+    - [ITALIAN]{"entity": "cuisine", "value": "italian"} restaurants [under 300]{"entity": "price", "value": "low"}
+    - [surat](location)
+    - please [send it](sendmail) to [regiltcj@ymail.com](emailid)
+- intent: affirm
+  examples: |
+    - indeed
+    - that's right
+    - ok
+    - great
+    - right, thank you
+    - correct
+    - great choice'
+    - yes please
+    - Please do that
+    - of course
+    - sounds really good
+    - thanks
+- intent: decline
+  examples: |
+    - No
+    - It's not neccessary
+    - i don't think so
+    - i don't want to give it to you
+    - not required
+    - nope
+    - No thanks
+    - no thank you
+    - no need of that
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - good bye
+    - stop
+    - end
+    - farewell
+    - Bye bye
+    - have a good one
+- synonym: mid
+  examples: |
+    - Less than 700
+- synonym: high
+  examples: |
+    - >700
+    - More than 700
+    - expensive
+- synonym: low
+  examples: |
+    - <300
+    - cheap
+- synonym: yes
+  examples: |
+    - yeah
+    - mail
+    - yep
+- synonym: chinese
+  examples: |
+    - chines
+    - Chinese
+    - Chines
+- synonym: Ahmedabad
+  examples: |
+    - Karnavati
+    - karnavathi
+    - Ahemadabad
+    - ahemadabadh
+    - ahemadhabad
+    - Ahmdbd
+- synonym: Bangalore
+  examples: |
+    - Bengaluru
+    - bangalore
+    - Banglaore
+    - banglaore
+    - bengalore
+    - bngluru
+    - bangalor
+    - BLR
+- synonym: Chennai
+  examples: |
+    - Madras
+    - chenai
+    - madras
+- synonym: Delhi
+  examples: |
+    - New Delhi
+    - Dilli
+    - Nayi Dilli
+    - NCR
+    - Delhi NCR
+    - newdelhi
+    - NewDelhi
+- synonym: Hyderabad
+  examples: |
+    - hydherabad
+    - hydarabad
+    - hydrabad
+    - Hydrabad
+    - hyderabadh
+    - secunderabad
+    - Secunderabadh
+    - Hydrbd
+- synonym: Kolkata
+  examples: |
+    - culcutta
+    - Culcutta
+    - culcuta
+    - kolkatta
+    - kolkata
+- synonym: Mumbai
+  examples: |
+    - Bombay
+- synonym: Ajmer
+  examples: |
+    - ajmeer
+- synonym: Aligarh
+  examples: |
+    - alligarh
+    - aligar
+    - aligad
+- synonym: Amravati
+  examples: |
+    - amaravati
+    - Amaravathi
+    - amaravathi
+    - amravadhi
+- synonym: Asansol
+  examples: |
+    - aasansol
+    - aassansol
+    - assansol
+- synonym: Aurangabad
+  examples: |
+    - orangabad
+    - aurangabadh
+- synonym: Belgaum
+  examples: |
+    - belagavi
+    - Belgavi
+    - Belgom
+    - belagaum
+- synonym: Bhavnagar
+  examples: |
+    - bavnagar
+    - bhavanagar
+    - bavanagar
+    - Bhavanagar
+- synonym: Bhiwandi
+  examples: |
+    - biwandi
+    - bhivandi
+    - Biwandhi
+    - Bhivandhi
+    - bivanthi
+    - Bhiwanthi
+    - Bivanthi
+- synonym: Bhopal
+  examples: |
+    - bopal
+    - bhojpal
+- synonym: Bhubaneswar
+  examples: |
+    - bubaneswar
+    - Bhubanesvar
+    - bhubanesvar
+    - bhuvaneswar
+    - Bhuvaneswar
+    - Bhuvanesvar
+    - BBR
+- synonym: Bikaner
+  examples: |
+    - bikaneer
+    - Bikaneer
+- synonym: Bokaro
+  examples: |
+    - bokaro steel city
+    - Bhokaro
+    - bokkaro
+    - Bokarro
+    - bokaaro
+- synonym: Chandigarh
+  examples: |
+    - Chandigar
+    - chandhigarh
+    - Chandighar
+    - chandighar
+    - chandigar
+    - chandigard
+    - Chandigar
+- synonym: Coimbatore
+  examples: |
+    - coimbatur
+    - koyambed
+    - koimbathur
+    - coimbatoor
+    - kovai
+    - Kovai
+    - Koyambathur
+    - Koyambathoor
+    - Koyamputhoor
+    - koyampuththoor
+- synonym: Cuttack
+  examples: |
+    - cuttak
+    - cutak
+    - Cuttak
+- synonym: Dehradun
+  examples: |
+    - deradun
+    - deradoon
+    - Dehradoon
+    - dehradhun
+- synonym: Dhanbad
+  examples: |
+    - danbad
+    - Danbad
+    - danbadh
+- synonym: Bhilai
+  examples: |
+    - bilai
+    - Bilai
+    - Bhilai Nagar
+- synonym: Durgapur
+  examples: |
+    - Dhurgapur
+    - dhurgapur
+- synonym: Faridabad
+  examples: |
+    - Faridhabad
+    - faridabadh
+    - feridabad
+- synonym: Firozabad
+  examples: |
+    - firozabadh
+- synonym: Ghaziabad
+  examples: |
+    - Gaziabad
+    - ghaziabadh
+- synonym: Gorakhpur
+  examples: |
+    - Gorakpur
+    - gorakhpoor
+- synonym: Gulbarga
+  examples: |
+    - Kalaburagi
+    - Kulbarga
+    - gulburga
+- synonym: Guntur
+  examples: |
+    - gundur
+- synonym: Gwalior
+  examples: |
+    - gwaliar
+    - galiar
+    - gualiar
+- synonym: Gurgaon
+  examples: |
+    - gurugram
+- synonym: Guwahati
+  examples: |
+    - guahati
+    - guvahati
+    - Guwahatti
+- synonym: Hubli–Dharwad
+  examples: |
+    - hubli
+    - dharwad
+    - darwad
+    - darwadh
+    - hoobli
+- synonym: Indore
+  examples: |
+    - indur
+- synonym: Jabalpur
+  examples: |
+    - Jubbulpore
+    - Jubulpore
+- synonym: Jalandhar
+  examples: |
+    - Jullundur
+    - jullundhur
+    - julundur
+    - jalandar
+    - jelandar
+- synonym: Jamnagar
+  examples: |
+    - jamananagar
+    - Nawanagar
+- synonym: Jamshedpur
+  examples: |
+    - jamshedhpur
+    - jemshedpur
+- synonym: Jhansi
+  examples: |
+    - jansi
+- synonym: Jodhpur
+  examples: |
+    - jodpur
+- synonym: kakinada
+  examples: |
+    - coringa
+    - Cocanada
+    - nandiwada
+    - Kaki nandiwada
+    - kaki nandhiwada
+- synonym: Kannur
+  examples: |
+    - Cannnanore
+    - kanur
+    - cananore
+    - cannanor
+    - Kannannor
+- synonym: Kanpur
+  examples: |
+    - Cawnpur
+    - cawnpore
+- synonym: Kochi
+  examples: |
+    - Cochin
+    - Ernakulam
+    - Kochin
+    - EKM
+- synonym: Kolhapur
+  examples: |
+    - Karvir
+    - kolapur
+    - kolpur
+    - kollpur
+    - Kollagiri
+    - brahmapuri
+- synonym: Kollam
+  examples: |
+    - Quilon
+    - Kolam
+- synonym: Kozhikode
+  examples: |
+    - Calicut
+    - koyikode
+    - kozhikod
+    - kozikod
+- synonym: Kurnool
+  examples: |
+    - Kandanvolu
+- synonym: Ludhiana
+  examples: |
+    - Lodhiana
+    - ludiana
+- synonym: Madurai
+  examples: |
+    - madhurai
+- synonym: Malappuram
+  examples: |
+    - malapuram
+- synonym: Mangalore
+  examples: |
+    - mangalapuram
+    - manguluru
+    - mangalor
+- synonym: Moradabad
+  examples: |
+    - Moradhabad
+    - moradabadh
+- synonym: Mysore
+  examples: |
+    - Mysuru
+    - mysor
+- synonym: Nanded
+  examples: |
+    - nandid
+- synonym: Nashik
+  examples: |
+    - nasik
+    - nashikh
+    - nasikh
+- synonym: Pondicherry
+  examples: |
+    - pondicherry
+    - Puthucherry
+    - Pudhucherry
+    - pondi
+    - pondy
+- synonym: prayagraj
+  examples: |
+    - Allahabad
+    - alahabadh
+    - prayaagraj
+- synonym: Rajahmundry
+  examples: |
+    - Rajamundry
+    - Rajamahendravaram
+- synonym: Rourkela
+  examples: |
+    - rorkela
+- synonym: Shimla
+  examples: |
+    - simla
+- synonym: Solapur
+  examples: |
+    - sholapur
+- synonym: Thiruvananthapuram
+  examples: |
+    - trivandrum
+    - TVM
+    - Tiruvananthapuram
+    - Thrivandrum
+    - Travancore
+- synonym: Thrissur
+  examples: |
+    - trichur
+    - trissur
+    - trishur
+    - thrisoor
+- synonym: Tiruchirappalli
+  examples: |
+    - tiruchirapilli
+    - Thiruchirapally
+    - Trichy
+    - trichy
+    - tiruchi
+    - Trichinopoly
+    - trichnopoly
+    - thiruchirapalli
+- synonym: Tiruppur
+  examples: |
+    - Thirupur
+    - tirupur
+    - thirupur
+    - tirupur
+    - Tirupoor
+- synonym: Tiruvannamalai
+  examples: |
+    - thirvannmalai
+    - thiruvanmalai
+    - tiruvanmalai
+- synonym: Tirunelveli
+  examples: |
+    - Thirunelveli
+    - thirunellveli
+    - tirunalveli
+    - thirunalveli
+- synonym: Ujjain
+  examples: |
+    - avanti
+    - Avanthi
+    - avanthika
+    - Avanthika
+    - avanthikapuri
+    - Avantikapuri
+    - ujjaini
+    - Ujaini
+    - ujayini
+    - Ujjayini
+    - Avandhikapuri
+- synonym: Vijapur
+  examples: |
+    - vijaypura
+    - Vijayapura
+    - bijapoor
+    - Vijayapura
+    - Bijapur
+- synonym: Vadodara
+  examples: |
+    - vadodhara
+    - baroda
+    - Vadodra
+- synonym: Varanasi
+  examples: |
+    - Kashi
+    - Veranasi
+    - banaras
+    - Benaras
+- synonym: Vasai-Virar
+  examples: |
+    - Vasai
+    - basaen
+    - bassaen
+- synonym: Vijayawada
+  examples: |
+    - Vijayavata
+    - Vijayavada
+    - beejapuram
+    - Kanakaprabha
+    - kanakapraba
+    - Vijaywada
+    - bezwada
+- synonym: Visakhapatnam
+  examples: |
+    - vizag
+    - Vishakapatanam
+    - vishakhapatnam
+    - Vizag
+    - Visakhpatnam
+    - vishakhapattanam
+- synonym: Warangal
+  examples: |
+    - Varangal
+    - Warankal
